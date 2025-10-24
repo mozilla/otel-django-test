@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # Copyright The OpenTelemetry Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,18 +11,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""
+WSGI config for instrumentation_example project.
 
-"""Django"s command-line utility for administrative tasks."""
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
+"""
 
 import os
-import sys
 
-def main():
-    """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "instrumentation_example.settings")
-    from django.core.management import execute_from_command_line
-    execute_from_command_line(sys.argv)
+from django.core.wsgi import get_wsgi_application
 
-if __name__ == "__main__":
-    main()
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE", "instrumentation_example.settings"
+)
 
+application = get_wsgi_application()

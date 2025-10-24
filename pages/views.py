@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # Copyright The OpenTelemetry Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,18 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from django.http import HttpResponse
 
-"""Django"s command-line utility for administrative tasks."""
 
-import os
-import sys
+def home_page_view(request):
+    return HttpResponse("Hello, world")
 
-def main():
-    """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "instrumentation_example.settings")
-    from django.core.management import execute_from_command_line
-    execute_from_command_line(sys.argv)
 
-if __name__ == "__main__":
-    main()
+def health(request):
+    # GCP / k8s / uptime checks
+    return HttpResponse("ok", status=200)
 
+def lbheartbeat(request):
+    return HttpResponse("ok", status=200)
