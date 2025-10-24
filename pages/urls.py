@@ -18,5 +18,8 @@ urlpatterns = [
     path("", views.home_page_view, name="home"),
     path("__lbheartbeat__/", views.lbheartbeat),
     path("__lbheartbeat__", views.lbheartbeat),
+    path("info/", views.info, name="info"),
+    path("slow/", views.slow, name="slow"),
+    path("error/", views.error, name="error"),
 ]
 
