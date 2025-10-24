@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import ToDoItem
 from .forms import ToDoForm
+from django.http import HttpResponse
 
 def index(request):
     items = ToDoItem.objects.all()
@@ -21,3 +22,6 @@ def delete_item(request, item_id):
     if request.method == 'POST':
         item.delete()
         return redirect('index')
+
+def lbheartbeat(request):
+    return HttpResponse("ok", status=200)
