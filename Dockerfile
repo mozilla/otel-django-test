@@ -21,4 +21,4 @@ ENV PYTHONUNBUFFERED=1
 ENV DJANGO_SETTINGS_MODULE=instrumentation_example.settings
 
 # run migrations & start django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000","--noreload"]
+CMD ["gunicorn","instrumentation_example.wsgi:application","--workers", "4","--bind", "0.0.0.0:8000"]
