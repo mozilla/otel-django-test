@@ -21,5 +21,6 @@ urlpatterns = [
     path("info/", views.info, name="info"),
     path("slow/", views.slow, name="slow"),
     path("error/", views.error, name="error"),
+    path("/", views.error, name="home"),
 ]
 

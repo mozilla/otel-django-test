@@ -35,12 +35,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1"]
+#ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1"]
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-#DEBUG = os.environ.get("DJANGO_DEBUG")
+DEBUG = os.environ.get("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
@@ -91,8 +91,18 @@ WSGI_APPLICATION = "instrumentation_example.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "/data/db.sqlite3",
+        "ENGINE": os.environ.get(
+            "DJANGO_DB_ENGINE",
+            "django.db.backends.sqlite3",
+        ),
+        "NAME": os.environ.get(
+            "DJANGO_DB_NAME",
+            os.path.join(BASE_DIR, "db.sqlite3"),
+        ),
+        "USER": os.environ.get("DJANGO_DB_USER", ""),
+        "PASSWORD": os.environ.get("DJANGO_DB_PASSWORD", ""),
+        "HOST": os.environ.get("DJANGO_DB_HOST", ""),
+        "PORT": os.environ.get("DJANGO_DB_PORT", ""),
     }
 }
 
